@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter";
+  }
+}
+
+@layer utilities {
+  .bg-primary {
+    background-color: rgb(24, 24, 27);
+  }
+
+  .text-primary-foreground {
+    color: #fff;
+  }
+
+  .text-muted-foreground {
+    color: rgb(113, 113, 122);
+  }
+
+  .bg-secondary {
+    background-color: rgba(244, 244, 245, 0.996);
+  }
+
+  .text-secondary-foreground {
+    color: rgb(24, 24, 27);
+  }
+
+  .bg-accent {
+    background: hsl(240 4.8% 95.9%);
+  }
+
+  .bg-muted {
+    background-color: hsl(240 4.8% 95.9%);
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+iframe a {
+  pointer-events: none;
+}
