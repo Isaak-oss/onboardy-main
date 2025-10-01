@@ -9,8 +9,6 @@ import { ToastContainer } from "react-toastify";
 import i18nConfig from "../../../i18nConfig.ts";
 import TranslationsProvider from "../../providers/TranslationsProvider.tsx";
 import initTranslations from "../i18n.ts";
-import Script from "next/script";
-import { connectTooltipsToUserScript } from "../../consts/consts.ts";
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({ locale }));
@@ -53,14 +51,6 @@ async function RootLayout({
             </ReactQueryProvider>
           </GoogleOAuthProvider>
         </TranslationsProvider>
-        <Script id="custom-script" strategy="lazyOnload">
-          {/*{interactiveScript}*/}
-          {connectTooltipsToUserScript(
-            "1",
-            "5f2c774e0aea4264e42ed76e790bf4b43c07a17db21b074a949ed02a38072f7c",
-            process.env.NEXT_PUBLIC_BASE_API_URL || "",
-          )}
-        </Script>
       </body>
     </html>
   );

@@ -3,8 +3,13 @@ export type LoginScheme = {
   password: string;
 };
 
+export type QuestionScheme = {
+  question: string;
+  note?: string;
+};
+
 export type ProjectScheme = {
   name: string;
-  description: string;
-  url: string;
+  description?: string;
+  questions: QuestionScheme[];
 };

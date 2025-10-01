@@ -10,7 +10,8 @@ import { setUser } from "../store/slices/authSlice.ts";
 import Header from "../components/Header/Header.tsx";
 import { useCleanPathname } from "../hooks/useCleanPathname.ts";
 
-const hiddenHeaderPaths = ["/auth/signIn", "/auth/signUp", "/"];
+const hiddenHeaderPaths = ["/auth/signIn", "/auth/signUp", "answer-question"];
+const publicUrls = ["answer-question"];
 
 const ProtectedLayout = ({ children }: { children: ReactNode }) => {
   const pathname = useCleanPathname();
@@ -25,16 +26,17 @@ const ProtectedLayout = ({ children }: { children: ReactNode }) => {
     }
   }, [dispatch, user]);
 
-  if (!isAuth && !pathname?.includes("auth") && pathname !== "/") {
+  const isPublic = publicUrls.some((url) => pathname?.includes(url));
+
+
+  if (!isAuth && !pathname?.includes("auth") && pathname !== "/" && !isPublic) {
     redirect("/auth/signIn");
     return;
-  } else if (isAuth && pathname === "/") {
-    redirect("/projects");
   }
 
   return (
     <div className="flex flex-col min-h-[100vh]">
-      {!hiddenHeaderPaths.some((path) => pathname === path) && <Header />}
+      {!hiddenHeaderPaths.some((path) => pathname.includes(path) || pathname === "/") && <Header />}
       {children}
     </div>
   );

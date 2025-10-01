@@ -52,10 +52,15 @@ export type Settings = {
   defaultTooltipStyles: { containerStyles: string; textStyles: string; btnStyles: string };
 };
 
+export type Question = {
+  id: number
+  question: string
+  note?: string
+}
+
 export type Project = {
   id: number;
   name: string;
-  tooltips: ClientToolTip[];
-  url: string;
   description: string;
+  questions: Question[]
 }
