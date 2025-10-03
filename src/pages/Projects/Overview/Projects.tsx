@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { projectsApi } from "../../../api/projects/projectsApi.ts";
 import Loader from "../../../components/Loader/Loader.tsx";
 import PlusIcon from "../../../components/SvgIcons/PlusIcon.tsx";
-import ProjectForm from "./components/ProjectForm.tsx";
+import ProjectForm from "./components/ProjectForm/ProjectForm.tsx";
 import { useState } from "react";
 
 const Projects = () => {

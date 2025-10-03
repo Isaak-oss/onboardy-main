@@ -1,7 +1,8 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import { ID } from "../../../../types/rawTypes.ts";
 
-const ProjectCard = ({ name, id }: { name: string; id: number }) => {
+const ProjectCard = ({ name, id }: { name: string; id: ID }) => {
   const router = useRouter();
 
   return (

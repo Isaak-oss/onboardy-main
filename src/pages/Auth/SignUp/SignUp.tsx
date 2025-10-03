@@ -8,7 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { parseServerError, setServerErrorToForm } from "../../../services/parse.ts";
 import { Controller, useForm } from "react-hook-form";
 import { LoginScheme } from "../../../types/formTypes.ts";
-import CustomInput from "../../../components/CustomInput/CustomInput.tsx";
+import CustomInput from "../../../components/CustomFields/CustomInput/CustomInput.tsx";
 import CustomBtn from "../../../components/CustomBtn/CustomBtn.tsx";
 import { useRouter } from "next/navigation";
 import Link from "next/link";

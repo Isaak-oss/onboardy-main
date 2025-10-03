@@ -1,18 +1,19 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, InputHTMLAttributes } from "react";
 
-type CustomCheckboxProps = {
+type CustomCheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
   checked: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   name: string;
   label?: string;
 };
 
-const CustomCheckbox = ({ checked, onChange, name, label }: CustomCheckboxProps) => {
+const CustomCheckbox = ({ checked, onChange, name, label, ...rest }: CustomCheckboxProps) => {
   return (
     <div className="flex gap-2 items-center">
       <div className="flex h-5 shrink-0 items-center">
         <div className="group grid size-4 grid-cols-1">
           <input
+            {...rest}
             onChange={(e) => onChange(e)}
             checked={checked}
             id="filter-mobile-color-0"

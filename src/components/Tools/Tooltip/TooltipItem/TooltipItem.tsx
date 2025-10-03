@@ -6,7 +6,7 @@ import {
   TooltipStylesComponent,
 } from "../../../../types/rawTypes.ts";
 import ColorPicker from "../../../ColorPicker/ColorPicker.tsx";
-import CustomInput from "../../../CustomInput/CustomInput.tsx";
+import CustomInput from "../../../CustomFields/CustomInput/CustomInput.tsx";
 import Accordion from "../../../Accordion/Accordion.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { dashBoardApi } from "../../../../api/dashBoard/dashBoardApi.ts";

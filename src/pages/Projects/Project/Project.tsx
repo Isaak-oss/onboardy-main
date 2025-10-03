@@ -12,7 +12,8 @@ import DescriptionSection from "./components/DescriptionSection.tsx";
 import QuestionsSection from "./components/QuestionsSection.tsx";
 import ArrowIcon from "../../../components/SvgIcons/ArrowIcon.tsx";
 import { EditBtn } from "../../../components/ActionBtns/ActionBtns.tsx";
-import ProjectForm from "../Overview/components/ProjectForm.tsx";
+import ProjectForm from "../Overview/components/ProjectForm/ProjectForm.tsx";
+import PersonalQuestionsSection from "./components/PersonalQuestionsSection.tsx";
 
 const Project = () => {
   const { t } = useTranslation();
@@ -63,19 +64,23 @@ const Project = () => {
                 </div>
               )}
               <EditBtn onClick={() => setIsFormOpen(!isFormOpen)} />
-              <div className="ml-auto flex items-center gap-1">
-                <p>Link for interviewer:</p>
-                <a
-                  className="text-blue-600 underline"
-                  href={`${process.env.NEXT_PUBLIC_PUBLIC_LINK_URL}answer-question/${data?.id}`}
-                >
-                  {process.env.NEXT_PUBLIC_PUBLIC_LINK_URL}answer-question/{data?.id}
-                </a>
+              <div className="ml-auto">
+                Max Duration: {data.duration} minute
+                <div className="flex items-center gap-1">
+                  <p>Link for interviewer:</p>
+                  <a
+                    className="text-blue-600 underline"
+                    href={`${process.env.NEXT_PUBLIC_PUBLIC_LINK_URL}answer-question/${data?.id}`}
+                  >
+                    {process.env.NEXT_PUBLIC_PUBLIC_LINK_URL}answer-question/{data?.id}
+                  </a>
+                </div>
               </div>
             </div>
             {!isFormOpen ? (
               <div className="flex flex-col gap-2">
                 <DescriptionSection description={data?.description} />
+                <PersonalQuestionsSection personalQuestions={data?.personalQuestions} />
                 <QuestionsSection questions={data?.questions} />
               </div>
             ) : (

@@ -1,6 +1,6 @@
-import {Project, Question} from "../../types/rawTypes.ts";
+import { Project, Questions } from "../../types/rawTypes.ts";
 import { instance } from "../api.ts";
-import {ProjectScheme} from "../../types/formTypes.ts";
+import { ProjectScheme } from "../../types/formTypes.ts";
 
 export const projectsApi = {
   getProjects: (): Promise<Project[]> => {
@@ -9,13 +9,13 @@ export const projectsApi = {
   getProject: (projectId: string): Promise<Project> => {
     return instance.get(`/projects/${projectId}`);
   },
-  getQuestions: (projectId: string): Promise<Question[]> => {
+  getQuestions: (projectId: string): Promise<Questions> => {
     return instance.get(`/projects/${projectId}/questions`);
   },
   createProject: (data?: ProjectScheme): Promise<Project> => {
     return instance.post("/projects", data);
   },
-  updateProject: (data?: ProjectScheme, projectId?: number): Promise<Project> => {
+  updateProject: (data?: ProjectScheme, projectId?: string): Promise<Project> => {
     return instance.put(`/projects/${projectId}`, data);
   },
   deleteProject: (projectId: string): Promise<Project> => {

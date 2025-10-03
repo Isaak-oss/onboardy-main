@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CustomInput from "../../../components/CustomInput/CustomInput.tsx";
+import CustomInput from "../../../components/CustomFields/CustomInput/CustomInput.tsx";
 import { isValidUrl } from "../../../services/isValid.ts";
 import CustomBtn from "../../../components/CustomBtn/CustomBtn.tsx";
 import {useRouter} from "next/navigation";

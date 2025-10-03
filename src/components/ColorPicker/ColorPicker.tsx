@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ColorResult, ChromePicker } from "react-color";
-import CustomInput from "../CustomInput/CustomInput.tsx";
+import CustomInput from "../CustomFields/CustomInput/CustomInput.tsx";
 import { useOnClickOutside } from "usehooks-ts";
 
 type ColorPickerProps = {

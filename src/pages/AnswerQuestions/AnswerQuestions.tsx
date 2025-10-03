@@ -1,21 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { projectsApi } from "../../api/projects/projectsApi.ts";
 import { useParams } from "next/navigation";
-import Loader from "../../components/Loader/Loader.tsx";
+import { FormProvider, useForm } from "react-hook-form";
+import DataBoundary from "../../components/DataBoundary/DataBoundary.tsx";
+import { AnswerQuestionsScheme } from "../../types/formTypes.ts";
+import PersonalFormModal from "./components/PersonalFormModal/PersonalFormModal.tsx";
+import AllQuestions from "./components/AllQuestions/AllQuestions.tsx";
+
+const personalAnswers = sessionStorage.getItem("personalAnswers");
 
 const AnswerQuestions = () => {
   const params = useParams();
 
-  const { data: questions, isLoading } = useQuery(["project", params!.projectId], () =>
+  const form = useForm<AnswerQuestionsScheme>();
+
+  const { data, isLoading } = useQuery(["project", params!.projectId], () =>
     projectsApi.getQuestions(params!.projectId as string),
   );
 
+  useEffect(() => {
+    if (personalAnswers) {
+      const parsedPersonalAnswers = JSON.parse(personalAnswers);
+      if (parsedPersonalAnswers.projectId === params!.projectId) {
+        form.reset({ personalAnswers: parsedPersonalAnswers?.personalAnswers });
+      }
+    }
+    console.log(form.getValues());
+  }, []);
+
   return (
-    <>
-      <header className="sticky top-0 z-[100] border-b bg-white shadow-sm">
+    <FormProvider {...form}>
+      <header className="border-b bg-white shadow-sm">
         <div className="flex h-16 items-center justify-between px-7">
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold text-primary">Answer Questions</h1>
@@ -23,26 +41,18 @@ const AnswerQuestions = () => {
         </div>
       </header>
       <section className="overflow-hidden bg-slate-50 p-10 flex-1 ">
-        <div className="container mx-auto">
-          {isLoading ? (
-            <Loader />
-          ) : !questions ? (
-            "Questions Failed to Load"
-          ) : (
-            <ol>
-              {questions.map((question, index) => (
-                <li key={index}>
-                  <p className="text-lg">
-                    {index + 1}. {question.question || "Empty"}{" "}
-                    {question.note && `(${question.note})`}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          )}
+        <div className="mx-auto">
+          <DataBoundary isLoading={isLoading} noData={!data}>
+            {data && (
+              <>
+                <PersonalFormModal personalQuestions={data.personalQuestions} />
+                <AllQuestions questions={data.questions} duration={data.duration}/>
+              </>
+            )}
+          </DataBoundary>
         </div>
       </section>
-    </>
+    </FormProvider>
   );
 };
 

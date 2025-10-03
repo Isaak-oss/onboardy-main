@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CodeHighlighter from "../../components/CodeHighlighter/CodeHighlighter.tsx";
 import { useAppSelector } from "../../store/store.ts";
 import { TooltipStylesComponent } from "../../types/rawTypes.ts";
-import CustomTextarea from "../../components/CustomTextarea/CustomTextarea.tsx";
+import CustomTextarea from "../../components/CustomFields/CustomTextarea/CustomTextarea.tsx";
 import { defaultStylesExample } from "../../consts/consts.ts";
 import CustomBtn from "../../components/CustomBtn/CustomBtn.tsx";
 import { useMutation, useQuery } from "@tanstack/react-query";

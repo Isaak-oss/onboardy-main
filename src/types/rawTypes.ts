@@ -1,4 +1,7 @@
 import { CSSProperties } from "react";
+import { PersonalQuestionFieldType } from "./formTypes.ts";
+
+export type ID = string;
 
 export type ClientRect = {
   x: number;
@@ -52,15 +55,31 @@ export type Settings = {
   defaultTooltipStyles: { containerStyles: string; textStyles: string; btnStyles: string };
 };
 
+export type Questions = {
+  questions: Question[]
+  personalQuestions: PersonalQuestion[]
+  duration: number
+};
+
 export type Question = {
-  id: number
-  question: string
-  note?: string
-}
+  id: ID;
+  question: string;
+  note?: string;
+};
+
+export type PersonalQuestion = {
+  id: ID;
+  field: string;
+  fieldType: PersonalQuestionFieldType;
+  answer?: string;
+  isRequired: boolean;
+};
 
 export type Project = {
-  id: number;
+  id: ID;
   name: string;
   description: string;
-  questions: Question[]
-}
+  questions: Question[];
+  duration: number;
+  personalQuestions: PersonalQuestion[];
+};
